@@ -30,10 +30,12 @@ $payload = [
     'req_email' => 'surya.kejawen@gmail.com',
     'req_name' => 'Muhamad Surya Iksanudin',
     'req_basket' => BasketFormatter::format([
-        'name' => 'Kurekan Kuping',
-        'amount' => 100000.00,
-        'quantity' => 1,
-        'subtotal' => 100000.00,
+        [
+            'name' => 'Kurekan Kuping',
+            'amount' => 100000.00,
+            'quantity' => 1,
+            'subtotal' => 100000.00,
+        ]
     ]),
     'req_address' => 'Di rumah',
     'req_mobile_phone' => 'Di rumah',
