@@ -15,14 +15,14 @@ class Api
     private const SANDBOX_PRE_PAYMENT_URL = 'http://staging.doku.com/api/payment/PrePayment';
     private const SANDBOX_PAYMENT_URL = 'http://staging.doku.com/api/payment/paymentMip';
     private const SANDBOX_DIRECT_PAYMENT_URL = 'http://staging.doku.com/api/payment/PaymentMIPDirect';
-    private const SANDBOX_GENERATE_CODE_8DIGIT_URL = 'http://staging.doku.com/api/payment/DoGeneratePaycodeVA';
-    private const SANDBOX_GENERATE_CODE_11DIGIT_URL = 'http://staging.doku.com/api/payment/doGeneratePaymentCode';
+    private const SANDBOX_GENERATE_CODE_VA_URL = 'http://staging.doku.com/api/payment/DoGeneratePaycodeVA';
+    private const SANDBOX_GENERATE_CODE_BANK_TRANSFER_URL = 'http://staging.doku.com/api/payment/doGeneratePaymentCode';
 
     private const PRE_PAYMENT_URL = 'https://pay.doku.com/api/payment/PrePayment';
     private const PAYMENT_URL = 'https://pay.doku.com/api/payment/paymentMip';
     private const DIRECT_PAYMENT_URL = 'https://pay.doku.com/api/payment/PaymentMIPDirect';
-    private const GENERATE_CODE_8DIGIT_URL = 'https://pay.doku.com/api/payment/DoGeneratePaycodeVA';
-    private const GENERATE_CODE_11DIGIT_URL = 'https://pay.doku.com/api/payment/doGeneratePaymentCode';
+    private const GENERATE_CODE_CODE_VA_URL = 'https://pay.doku.com/api/payment/DoGeneratePaycodeVA';
+    private const GENERATE_CODE_BANK_TRANSFER_URL = 'https://pay.doku.com/api/payment/doGeneratePaymentCode';
 
     private $isProduction = false;
 
@@ -46,13 +46,13 @@ class Api
         return $this->isProduction ? self::DIRECT_PAYMENT_URL : self::SANDBOX_DIRECT_PAYMENT_URL;
     }
 
-    public function getGenerate8DigitCodeUrl(): string
+    public function getGenerateVACodeUrl(): string
     {
-        return $this->isProduction ? self::GENERATE_CODE_8DIGIT_URL : self::SANDBOX_GENERATE_CODE_8DIGIT_URL;
+        return $this->isProduction ? self::GENERATE_CODE_CODE_VA_URL : self::SANDBOX_GENERATE_CODE_VA_URL;
     }
 
-    public function getGenerate11DigitCodeUrl(): string
+    public function getGenerateBankTransferCodeUrl(): string
     {
-        return $this->isProduction ? self::GENERATE_CODE_11DIGIT_URL : self::SANDBOX_GENERATE_CODE_11DIGIT_URL;
+        return $this->isProduction ? self::GENERATE_CODE_BANK_TRANSFER_URL : self::SANDBOX_GENERATE_CODE_BANK_TRANSFER_URL;
     }
 }
