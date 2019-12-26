@@ -23,8 +23,8 @@ class BankTransfer implements PaymentInterface
     public function pay(Billing $billing): void
     {
         $client = new Client();
-        $response = $client->post($this->api->getGenerateBankTransferCodeUrl(), [
-            'form_params' => ['data' => json_encode($billing->getPayload())],
+        $response = $client->request('POST', $this->api->getGenerateBankTransferCodeUrl(), [
+            'json' => json_encode($billing->getPayload()),
         ]);
 
         file_put_contents('/tmp/bannk_transfer.json', $response);
