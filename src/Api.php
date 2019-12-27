@@ -9,26 +9,35 @@ namespace KejawenLab\PaymentGateway\Doku;
  */
 class Api
 {
-    public const MALL_ID = '11115699';
-    public const SHARED_KEY = 'eXka8Oo93UAj';
-
     private const SANDBOX_PRE_PAYMENT_URL = 'http://staging.doku.com/api/payment/PrePayment';
     private const SANDBOX_PAYMENT_URL = 'http://staging.doku.com/api/payment/paymentMip';
     private const SANDBOX_DIRECT_PAYMENT_URL = 'http://staging.doku.com/api/payment/PaymentMIPDirect';
-    private const SANDBOX_GENERATE_CODE_VA_URL = 'http://staging.doku.com/api/payment/DoGeneratePaycodeVA';
-    private const SANDBOX_GENERATE_CODE_BANK_TRANSFER_URL = 'http://staging.doku.com/api/payment/doGeneratePaymentCode';
+    private const SANDBOX_GENERATE_CODE_URL = 'http://staging.doku.com/api/payment/DoGeneratePaycodeVA';
 
     private const PRE_PAYMENT_URL = 'https://pay.doku.com/api/payment/PrePayment';
     private const PAYMENT_URL = 'https://pay.doku.com/api/payment/paymentMip';
     private const DIRECT_PAYMENT_URL = 'https://pay.doku.com/api/payment/PaymentMIPDirect';
-    private const GENERATE_CODE_CODE_VA_URL = 'https://pay.doku.com/api/payment/DoGeneratePaycodeVA';
-    private const GENERATE_CODE_BANK_TRANSFER_URL = 'https://pay.doku.com/api/payment/doGeneratePaymentCode';
+    private const GENERATE_CODE_URL = 'https://pay.doku.com/api/payment/DoGeneratePaycodeVA';
 
+    private $mallId;
+    private $sharedKey;
     private $isProduction = false;
 
-    public function __construct(bool $isProduction = false)
+    public function __construct(string $mallId, string $sharedKey, bool $isProduction = false)
     {
+        $this->mallId = $mallId;
+        $this->sharedKey = $sharedKey;
         $this->isProduction = $isProduction;
+    }
+
+    public function getMallId(): string
+    {
+        return $this->mallId;
+    }
+
+    public function getSharedKey(): string
+    {
+        return $this->sharedKey;
     }
 
     public function getPrePaymentUrl(): string
@@ -48,11 +57,6 @@ class Api
 
     public function getGenerateVACodeUrl(): string
     {
-        return $this->isProduction ? self::GENERATE_CODE_CODE_VA_URL : self::SANDBOX_GENERATE_CODE_VA_URL;
-    }
-
-    public function getGenerateBankTransferCodeUrl(): string
-    {
-        return $this->isProduction ? self::GENERATE_CODE_BANK_TRANSFER_URL : self::SANDBOX_GENERATE_CODE_BANK_TRANSFER_URL;
+        return $this->isProduction ? self::GENERATE_CODE_URL : self::SANDBOX_GENERATE_CODE_URL;
     }
 }

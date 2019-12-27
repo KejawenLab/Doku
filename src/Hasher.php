@@ -9,6 +9,13 @@ namespace KejawenLab\PaymentGateway\Doku;
  */
 class Hasher
 {
+    private $api;
+
+    public function __construct(Api $api)
+    {
+        $this->api = $api;
+    }
+
     public function hashWords(array $payload): string
     {
         return sha1($this->rawWords($payload));
@@ -22,7 +29,7 @@ class Hasher
         $resultMsg = $payload['resultmsg'] ?? null;
         $eduStatus = $payload['edustatus'] ?? null;
 
-        $commonWords = sprintf('%s%s%s%s', $payload['amount'], Api::MALL_ID, Api::SHARED_KEY, $payload['invoice']);
+        $commonWords = sprintf('%s%s%s%s', $payload['amount'], $this->api->getMallId(), $this->api->getSharedKey(), $payload['invoice']);
 
         if ($deviceId) {
             $deviceIdWords = sprintf('%s%s', $commonWords, $currency);

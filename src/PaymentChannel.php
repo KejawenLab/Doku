@@ -40,7 +40,7 @@ class PaymentChannel
     public const BNI_YAP = '45';
     public const ARTHA_VA = '47';
 
-    public static function validateChannel(string $channel): bool
+    public static function valid(string $channel): bool
     {
         if (in_array($channel, self::availableChannels())) {
             return true;
